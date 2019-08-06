@@ -41,7 +41,7 @@ You can initialize elquery at any point, but I recommend initializing it as earl
 Here is some example CSS for the HTML above.
 
 ```css
-// md styling
+/* md styling (md:416) */
 
 .contact-card.elquery-md {
     text-align: left;
@@ -55,7 +55,7 @@ Here is some example CSS for the HTML above.
 
 
 
-// lg styling
+/* lg styling (lg:512) */
 
 .contact-card.elquery-lg .avatar {
     width: 32rem;
@@ -64,7 +64,7 @@ Here is some example CSS for the HTML above.
 
 
 
-// xl styling
+/* xl styling (xl:576) */
 
 .contact-card.elquery-xl {
     color: white;
