@@ -1,9 +1,14 @@
 # Elquery
+
 Element based media queries, for easier dynamic elements! Very light, and super simple to use.
+
+## Compatibility
+
+Elquery uses [`window.requestAnimationFrame()`](https://caniuse.com/#feat=requestanimationframe) which has very good browser support. The index.js file is in it's raw ES6 module form, you can do whatever you need to for your use case, like running it through babel.
 
 ## Example Usage
 
-**HTML**
+### HTML
 
 The `data-elquery` attribute is where you define the breakpoints of the element. The breakpoints are comma-seperated. For example: `416,512,576`.
 
@@ -23,7 +28,7 @@ You can optionally give a breakpoint an identifier by prefixing it with the name
 </div>
 ```
 
-**JS**
+### JS
 
 All you need to do is import elquery and call the `.init()` method.
 
@@ -36,7 +41,7 @@ elquery.init();
 
 You can initialize elquery at any point, but I recommend initializing it as early as you can, so the elements based media queries work right away.
 
-**CSS**
+### CSS
 
 Here is some example CSS for the HTML above.
 
