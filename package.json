@@ -1,11 +1,12 @@
 {
-  "name": "elquery",
-  "version": "1.0.0",
-  "description": "Element based media queries, for easier dynamic elements!",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Sean Krossing",
-  "license": "ISC"
+	"name": "elquery",
+	"version": "1.0.0",
+	"description": "Element based media queries, for easier dynamic elements! Very light, and super simple to use.",
+	"main": "index.js",
+	"author": "Sean Krossing",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/krosscode/elquery"
+	}
 }

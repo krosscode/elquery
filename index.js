@@ -1,73 +1,61 @@
+let inited = false;
+
 export default {
 	init() {
-		this.updateElemList();
-
-		this.addEventListeners([
-			'DOMContentLoaded',
-			'load',
-			'resize',
-		], this.updateAllElemSizes);
-	},
-
-	updateElemList() {
-		if (this.elemList === undefined) {
-			this.elemList = [];
+		if (inited) {
+			return false;
 		}
 
-		const newElems = [];
+		inited = true;
 
-		this.elemList = Array.from(document.querySelectorAll('[data-elquery]')).forEach(elem => {
-			if (this.elemList.indexOf(elem) === -1) {
-				this.elemList.push(elem);
-				newElems.push(elem);
+		this.updateElems();
 
-				elem.classList.add('elquery');
-			}
+		window.requestAnimationFrame(() => {
+			this.doFrame();
 		});
-
-		return newElems;
 	},
 
-	addEventListeners(listeners, callback) {
-		callback();
-		eventListeners.forEach(listener => {
-			window.addEventListener(listener, callback);
+	updateElems() {
+		this.elems = [];
+		Array.from(document.querySelectorAll('[data-elquery]')).forEach(elem => {
+			this.elems.push({
+				elem: elem,
+				breakpoints: this.getElemBreakpoints(elem),
+			});
 		});
 	},
 
 	getElemBreakpoints(elem) {
-		let breakpoints = elem.dataset.elquery.split(',');
-		breakpoints.forEach((breakpoint, index) => {
-			breakpoints[index] = parseInt(breakpoint, 10);
+		const breakpoints = [];
+
+		const breakpointStrings = elem.dataset.elquery.split(',');
+		breakpointStrings.forEach(breakpointString => {
+			const breakpointParts = breakpointString.split(':');
+
+			breakpoints.push({
+				name: breakpointParts[0],
+				width: breakpointParts[1] || breakpointParts[0],
+			});
 		});
+
 		return breakpoints;
 	},
 
-	updateElemSize(elem) {
-		const breakpoints = this.getElemBreakpoints(elem);
-		const elemWidth = elem.clientWidth;
-
-		breakpoints.forEach(breakpoint => {
-			const className = `elquery-${breakpoint}`;
-
-			if (elemWidth < breakpoint) {
-				elem.classList.remove(className);
-			} else {
-				elem.classList.add(className);
-			}
-		});
-	},
-
-	updateAllElemSizes() {
-		this.elemList.forEach(elem => {
-			this.updateElemSize(elem);
+	doFrame() {
+		this.elems.forEach(elem => {
+			const elemWidth = elem.elem.clientWidth;
+			elem.breakpoints.forEach(breakpoint => {
+				const className = `elquery-${breakpoint.name}`;
+				if (elemWidth < breakpoint.width) {
+					elem.elem.classList.remove(className);
+				} else {
+					elem.elem.classList.add(className);
+				}
+			});
 		});
 
-		const newElems = this.updateElemList();
-		if (newElems.length > 0) {
-			newElems.forEach(elem => {
-				this.updateElemSize(elem);
-			})
-		}
+		window.requestAnimationFrame(() => {
+			this.doFrame();
+		});
 	},
 };
