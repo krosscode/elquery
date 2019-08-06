@@ -1,0 +1,11 @@
+{
+  "name": "elquery",
+  "version": "1.0.0",
+  "description": "Element based media queries, for easier dynamic elements!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean Krossing",
+  "license": "ISC"
+}
