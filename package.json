@@ -4,7 +4,7 @@
 	"description": "Element based media queries, for easier dynamic elements! Very light, and super simple to use.",
 	"main": "index.js",
 	"author": "Sean Krossing",
-	"license": "ISC",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/krosscode/elquery"
